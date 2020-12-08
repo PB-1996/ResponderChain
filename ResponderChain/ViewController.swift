@@ -7,13 +7,30 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class VC1: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let vc2 = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VC2")
+        
+        navigationController?.pushViewController(vc2, animated: false)
     }
-
-
+    
+    @objc func method1() {
+        print(#function)
+    }
+    
 }
 
+class VC2: UIViewController {
+
+    @IBOutlet var button: UIButton!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        button.addTarget(nil, action: #selector(VC1.method1), for: .touchUpInside)
+    }
+    
+}
